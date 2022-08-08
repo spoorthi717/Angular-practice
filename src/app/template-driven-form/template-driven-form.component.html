@@ -1,0 +1,54 @@
+
+<div class="content">
+    <h1>Form</h1>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <!-- {{userForm.value | json}}
+        <hr>
+        {{user | json}}
+        <hr>  -->
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" 
+             #name="ngModel" required
+             [class.is-invalid]="name.invalid"
+              id="name" name="useraName" [(ngModel)]="user.name">
+              <small class="text-danger" [class.d-none]="name.valid || name.untouched" >Name is required</small>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email"   [(ngModel)]="user.email">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" name="topic"   [(ngModel)]="user.topic">
+                <option selected>Select course</option>
+                <option *ngFor=" let data of topics" value={{data}}>{{data}}</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="timePreference" id="timePreference"   [(ngModel)]="user.timePreference" value="morning"> 
+                <label class="form-check-label" for="flexRadioDefault1">
+                   Morning (9AM - 12PM)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="timePreference"  [(ngModel)]="user.timePreference" id="timePreference" value="evening" >
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Evening (5PM - 8PM)
+                </label>
+            </div>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="subscribe" id="flexCheckIndeterminate"  [(ngModel)]="user.subscribe">
+            <label class="form-check-label" for="flexCheckIndeterminate">
+              Send me promotional offer
+            </label>
+          </div>
+          <br>
+
+          <button [disabled]="userForm.form.invalid" class="btn btn-primary" type="submit"> Submit Form</button>
+    </form>
+</div>
